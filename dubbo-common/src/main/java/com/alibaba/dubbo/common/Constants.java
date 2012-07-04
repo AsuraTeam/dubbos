@@ -15,6 +15,7 @@
  */
 package com.alibaba.dubbo.common;
 
+import java.util.concurrent.ExecutorService;
 import java.util.regex.Pattern;
 
 /**
@@ -113,15 +114,15 @@ public class Constants {
 
     public static final String  DEFAULT_THREAD_NAME                = "Dubbo";
 
+    public static final int     DEFAULT_CORE_THREADS               = 0;
+
     public static final int     DEFAULT_THREADS                    = 200;
 
-    public static final int     DEFAULT_MIN_THREADS                = 1;
-
-    public static final int     DEFAULT_MAX_THREADS                = DEFAULT_THREADS;
+    public static final boolean DEFAULT_KEEP_ALIVE = true;
 
     public static final int     DEFAULT_QUEUES                     = 0;
 
-    public static final int     DEFAULT_THREAD_ALIVE               = 60 * 1000;
+    public static final int     DEFAULT_ALIVE                      = 60 * 1000;
 
     public static final int     DEFAULT_CONNECTIONS                = 0;
 
@@ -134,6 +135,8 @@ public class Constants {
     public static final int     DEFAULT_TIMEOUT                    = 1000;
 
     public static final int     DEFAULT_CONNECT_TIMEOUT            = 3000;
+
+    public static final int     DEFAULT_REGISTRY_CONNECT_TIMEOUT   = 5000;
 
     public static final int     DEFAULT_RETRIES                    = 2;
 
@@ -201,7 +204,7 @@ public class Constants {
 
     public static final String  FORKS_KEY                          = "forks";
 
-    public static final String  DEFAULT_THREADPOOL                 = "fixed";
+    public static final String  DEFAULT_THREADPOOL                 = "limited";
 
     public static final String  DEFAULT_CLIENT_THREADPOOL          = "cached";
 
@@ -211,15 +214,13 @@ public class Constants {
 
     public static final String  IO_THREADS_KEY                     = "iothreads";
 
+    public static final String  CORE_THREADS_KEY                   = "corethreads";
+
     public static final String  THREADS_KEY                        = "threads";
-
-    public static final String  THREADS_MIN_KEY                   = THREADS_KEY + ".min";
-
-    public static final String  THREADS_MAX_KEY                   = THREADS_KEY + ".max";
 
     public static final String  QUEUES_KEY                         = "queues";
 
-    public static final String  THREAD_ALIVE_KEY                   = "threadalive";
+    public static final String  ALIVE_KEY                          = "alive";
 
     public static final String  EXECUTES_KEY                       = "executes";
 
@@ -260,9 +261,18 @@ public class Constants {
     public static final String  DEFAULT_PROMPT                     = "dubbo>";
 
     public static final String  CODEC_KEY                          = "codec";
-    public static final String  DOWNSTREAM_CODEC_KEY               = "codec.downstream";
 
     public static final String  SERIALIZATION_KEY                  = "serialization";
+
+    // modified by lishen
+    public static final String EXTENSION_KEY = "extension";
+
+    // modified by lishen
+    public static final String  KEEP_ALIVE_KEY                  = "keepalive";
+
+    // modified by lishen
+    // TODO change to a better name
+    public static final String  OPTIMIZER_KEY                  = "optimizer";
 
     public static final String  EXCHANGER_KEY                      = "exchanger";
 
@@ -272,7 +282,11 @@ public class Constants {
 
     public static final String  CLIENT_KEY                         = "client";
 
+    public static final String  ID_KEY                             = "id";
+
     public static final String  ASYNC_KEY                          = "async";
+
+    public static final String  RETURN_KEY                         = "return";
 
     public static final String  TOKEN_KEY                          = "token";
 
@@ -295,6 +309,10 @@ public class Constants {
     public static final String  PID_KEY                            = "pid";
 
     public static final String  TIMESTAMP_KEY                      = "timestamp";
+    
+    public static final String  WARMUP_KEY                         = "warmup";
+
+    public static final int     DEFAULT_WARMUP                     = 10 * 60 * 1000;
 
     public static final String  CHECK_KEY                          = "check";
 
@@ -324,7 +342,7 @@ public class Constants {
 
     public static final String  HESSIAN_VERSION_KEY                = "hessian.version";
 
-    public static final String  DISPATHER_KEY                      = "dispather";
+    public static final String  DISPATCHER_KEY                     = "dispatcher";
 
     public static final String  CHANNEL_HANDLER_KEY                = "channel.handler";
 
@@ -503,8 +521,6 @@ public class Constants {
 
     public static final String  ON_DISCONNECT_KEY                  = "ondisconnect";
 
-    public static final String  RETURN_KEY                         = "return";
-
     public static final String  ON_INVOKE_METHOD_KEY               = "oninvoke.method";
 
     public static final String  ON_RETURN_METHOD_KEY               = "onreturn.method";
@@ -560,15 +576,25 @@ public class Constants {
     public static final String TPS_LIMIT_INTERVAL_KEY              = "tps.interval";
 
     public static final long DEFAULT_TPS_LIMIT_INTERVAL            = 60 * 1000;
+
+    public static final String DECODE_IN_IO_THREAD_KEY             = "decode.in.io";
+
+    public static final boolean DEFAULT_DECODE_IN_IO_THREAD        = true;
     
+    public static final String INPUT_KEY                           = "input";
+    
+    public static final String OUTPUT_KEY                          = "output";
+
+    public static final String EXECUTOR_SERVICE_COMPONENT_KEY      = ExecutorService.class.getName();
+
+    public static final String GENERIC_SERIALIZATION_NATIVE_JAVA   = "nativejava";
+
+    public static final String GENERIC_SERIALIZATION_DEFAULT       = "true";
+
+    public static final String GENERIC_SERIALIZATION_BEAN          = "bean";
+
     /*
      * private Constants(){ }
      */
-    
-    public static class Attachments {
-    	public static final String IS_ASYNC_KEY = 						"attachments.async";
-    	public static final String IS_ONEWAY_KEY = 						"attachments.oneway";
-    	public static final String INVOCATIONID_KEY = 					"attachments.invocation.id";
-    }
 
 }

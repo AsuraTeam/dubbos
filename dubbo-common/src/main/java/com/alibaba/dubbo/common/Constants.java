@@ -593,6 +593,10 @@ public class Constants {
 
     public static final String GENERIC_SERIALIZATION_BEAN          = "bean";
 
+    public static final String GENERIC_SERIALIZATION_JAVA          = "java";
+
+    public static final String GENERIC_SERIALIZATION_DEFAULT       = "true";
+
     /*
      * private Constants(){ }
      */

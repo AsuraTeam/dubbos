@@ -145,12 +145,12 @@
 		<profile.name>oss</profile.name>
 
 		<!-- for maven compiler plugin -->
-		<maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
-		<java_source_version>1.6</java_source_version>
-		<java_target_version>1.6</java_target_version>
+		<maven_compiler_plugin_version>3.5.1</maven_compiler_plugin_version>
+		<java_source_version>1.8</java_source_version>
+		<java_target_version>1.8</java_target_version>
 		<file_encoding>UTF-8</file_encoding>
 
-		<maven_source_plugin_version>2.1.1</maven_source_plugin_version>
+		<maven_source_plugin_version>3.0.1</maven_source_plugin_version>
 		<maven_jar_plugin_version>2.3.2</maven_jar_plugin_version>
 		<maven_war_plugin_version>2.1.1</maven_war_plugin_version>
 		<maven_install_plugin_version>2.3.1</maven_install_plugin_version>
@@ -600,9 +600,6 @@
 						<source>${java_source_version}</source>
 						<target>${java_target_version}</target>
 						<encoding>${file_encoding}</encoding>
-                        <compilerArgs>
-                            <arg>-XX:MaxPermSize=512M</arg>
-                        </compilerArgs>
 					</configuration>
 				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings

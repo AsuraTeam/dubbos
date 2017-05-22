@@ -20,6 +20,8 @@ import com.alibaba.dubbo.common.URL;
 import javax.cache.Cache;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
+import javax.cache.configuration.Configuration;
+import javax.cache.configuration.MutableConfiguration;
 import javax.cache.spi.CachingProvider;
 
 /**
@@ -35,7 +37,10 @@ public class JCache implements com.alibaba.dubbo.cache.Cache {
         String type = url.getParameter("jcache");
         CachingProvider cachingProvider = type == null || type.length() == 0 ? Caching.getCachingProvider() : Caching.getCachingProvider(type);
         CacheManager cacheManager = cachingProvider.getCacheManager();
-        Cache<Object, Object> cache = cacheManager.getCache(url.getServiceKey());
+        MutableConfiguration<Object, Object> configuration = new MutableConfiguration<>();
+        configuration.setStoreByValue(true);
+        configuration.setTypes(Object.class, Object.class);
+        Cache<Object, Object> cache = cacheManager.createCache(url.getServiceKey(),configuration);
         this.store = cache;
     }
 

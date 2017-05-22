@@ -28,6 +28,6 @@
     
     <bean id="versionService" class="com.alibaba.dubbo.examples.version.impl.VersionServiceImpl2" />
     
-	<dubbo:service interface="com.alibaba.dubbo.examples.version.api.VersionService" version="2.0.0" ref="versionService" />
+	<dubbo:service interface="com.alibaba.dubbo.examples.version.api.VersionService" version="2.0.0" ref="versionService" cache="jcache" />
 	
 </beans>
